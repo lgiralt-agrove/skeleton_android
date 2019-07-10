@@ -1,0 +1,31 @@
+package fr.devid.app.services
+
+import fr.devid.app.api.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import retrofit2.Response
+import timber.log.Timber
+import java.lang.Exception
+import javax.inject.Inject
+
+class AppServiceWrapper @Inject constructor(private val appService: AppService) {
+
+    suspend fun login(loginDto: LoginDto): Response<LoginResponseDto>?
+        = ioContextExecutor { appService.login(loginDto) }
+
+    suspend fun register(registerDto: RegisterDto): Response<TokenDto>?
+        = ioContextExecutor { appService.register(registerDto) }
+
+    suspend fun getProfile(): ProfileDto?
+        = ioContextExecutor { appService.getProfile() }
+
+    private suspend fun <T> ioContextExecutor(block: suspend () -> T): T? = withContext(Dispatchers.IO) {
+        try {
+            block()
+        } catch (ex: Exception) {
+            Timber.e(ex)
+            null
+        }
+    }
+
+}
