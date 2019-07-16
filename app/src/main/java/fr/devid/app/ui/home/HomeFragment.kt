@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import fr.devid.app.R
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.databinding.FragmentHomeBinding
@@ -20,17 +20,14 @@ class HomeFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var loginViewModel: LoginViewModel
-    private lateinit var profileViewModel: ProfileViewModel
+    private val loginViewModel: LoginViewModel by activityViewModels { viewModelFactory }
+    private val profileViewModel: ProfileViewModel by navGraphViewModels(R.id.tab_nav_graph) { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val navController = findNavController()
-        loginViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory).get(LoginViewModel::class.java)
-        profileViewModel = ViewModelProvider(navController.getViewModelStoreOwner(R.id.tab_nav_graph), viewModelFactory).get(ProfileViewModel::class.java)
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         bindUi(binding)

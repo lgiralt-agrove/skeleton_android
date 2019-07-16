@@ -35,10 +35,10 @@ override fun onActivityCreated(savedInstanceState: Bundle?) {
 The **LoginViewModel** uses the activity LifeCycle and is available everywhere in the app. It controls wether the user is logged in or not.
 The **ProfileViewModel** can be used to store data about the current user. Its LifeCycle should be the same as the **tab_nav_graph**.
 ```
-val navController = findNavController()  
-profileViewModel = ViewModelProvider(navController.getViewModelStoreOwner(R.id.tab_nav_graph), viewModelFactory).get(ProfileViewModel::class.java)
+private val profileViewModel: ProfileViewModel by navGraphViewModels(R.id.tab_nav_graph) { viewModelFactory }
 ```
 Thus it will stay alive will the user is navigating in the app, but will be destroyed upon logout.
+If you scope a ViewModel to a nested flow, it will be cleared when the user exist the flow.
 
 
 ## Glide
