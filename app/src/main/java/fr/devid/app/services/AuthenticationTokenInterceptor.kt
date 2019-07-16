@@ -11,18 +11,21 @@ class AuthenticationTokenInterceptor @Inject constructor(
 ): Interceptor {
 
     companion object {
-        const val AUTHENTICATION_HEADER = "Authentication: dummy"
-        private const val AUTHENTICATION_HEADER_NAME = "Authentication"
+        private const val AUTHORIZATION_HEADER_NAME = "Authorization"
+        private const val AUTHORIZATION_PREFIX = "Bearer "
+        const val AUTHORIZATION_HEADER = "$AUTHORIZATION_HEADER_NAME: dummy"
     }
 
     var token: String?
         get() = _token
         set(value) {
             _token = value
+            prefixToken = "$AUTHORIZATION_PREFIX$_token"
             sharedPreferencesService.token = value
         }
 
     private var _token: String?
+    private var prefixToken: String? = null
 
     init {
         _token = sharedPreferencesService.token
@@ -31,9 +34,9 @@ class AuthenticationTokenInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
 
-        if (!request.header(AUTHENTICATION_HEADER_NAME).isNullOrEmpty()) {
-            token?.let {
-                request = request.newBuilder().header(AUTHENTICATION_HEADER_NAME, it).build()
+        if (!request.header(AUTHORIZATION_HEADER_NAME).isNullOrEmpty()) {
+            prefixToken?.let {
+                request = request.newBuilder().header(AUTHORIZATION_HEADER_NAME, it).build()
             }
         }
 

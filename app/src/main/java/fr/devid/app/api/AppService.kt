@@ -13,7 +13,7 @@ interface AppService {
     suspend fun register(@Body registerDto: RegisterDto): Response<TokenDto>
 
     @GET("profile")
-    @Headers(AuthenticationTokenInterceptor.AUTHENTICATION_HEADER)
+    @Headers(AuthenticationTokenInterceptor.AUTHORIZATION_HEADER)
     suspend fun getProfile(): ProfileDto
 
 }
