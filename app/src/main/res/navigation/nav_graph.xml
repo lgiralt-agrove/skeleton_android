@@ -19,10 +19,6 @@
             <argument
                 android:name="isProfessional"
                 app:argType="boolean" />
-            <action
-                android:id="@+id/action_registerFragment_pop"
-                app:popUpTo="@id/registerFragment"
-                app:popUpToInclusive="true" />
         </fragment>
         <fragment
             android:id="@+id/loginFragment"
