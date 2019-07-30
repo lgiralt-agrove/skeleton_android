@@ -21,10 +21,11 @@ import javax.inject.Singleton
 
 
 @Module(includes = [ViewModelModule::class])
-class AppModule {
+object AppModule {
 
     @Singleton
     @Provides
+    @JvmStatic
     fun provideOkHttpClient(authenticationTokenInterceptor: AuthenticationTokenInterceptor): OkHttpClient = OkHttpClient.Builder().apply {
         addInterceptor(authenticationTokenInterceptor)
         if (BuildConfig.DEBUG) {
@@ -36,6 +37,7 @@ class AppModule {
 
     @Singleton
     @Provides
+    @JvmStatic
     fun provideAppService(okHttpClient: OkHttpClient): AppService = Retrofit.Builder().apply {
         baseUrl(Constants.BASE_URL)
         addConverterFactory(
@@ -51,11 +53,13 @@ class AppModule {
 
 
     @Provides
+    @JvmStatic
     fun provideContext(app: App): Context
         = app
 
     @Singleton
     @Provides
+    @JvmStatic
     fun provideAppDatabase(applicationContext: Context): AppDatabase
         = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app-db").build()
 
