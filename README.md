@@ -68,7 +68,7 @@ Dexter.withActivity(requireActivity())
         @SuppressLint("MissingPermission")  
         override fun onPermissionsChecked(report: MultiplePermissionsReport) {  
             if (report.areAllPermissionsGranted()) {  
-                Timber.d(TAG, "Permission was granted")  
+                Timber.d("Permission was granted")  
             } else {  
                 Toast.makeText(requireContext(), R.string.permission_location_not_granted, Toast.LENGTH_LONG).show()  
             }  

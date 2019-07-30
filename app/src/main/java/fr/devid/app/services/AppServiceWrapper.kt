@@ -7,7 +7,9 @@ import retrofit2.Response
 import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AppServiceWrapper @Inject constructor(private val appService: AppService) {
 
     suspend fun login(loginDto: LoginDto): Response<LoginResponseDto>?
