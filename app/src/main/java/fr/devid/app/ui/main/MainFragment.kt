@@ -44,7 +44,7 @@ class MainFragment : BaseFragment() {
     }
 
     private fun subscribeUi(navController: NavController) {
-        loginViewModel.authenticationSate.observe(viewLifecycleOwner, Observer {
+        loginViewModel.authenticationState.observe(viewLifecycleOwner, Observer {
             when (it) {
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.popBackStack()
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> Timber.d("User is authenticated")

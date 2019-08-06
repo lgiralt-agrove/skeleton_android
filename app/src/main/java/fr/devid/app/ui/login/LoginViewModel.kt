@@ -32,17 +32,17 @@ class LoginViewModel @Inject constructor(
 
     val isLoading: LiveData<Boolean>
         get() = _isLoading
-    val authenticationSate: LiveData<AuthenticationState>
-        get() = _authenticationSate
+    val authenticationState: LiveData<AuthenticationState>
+        get() = _authenticationState
     val loginState: LiveData<Event<LoginState>>
         get() = _loginState
 
     private val _isLoading = MutableLiveData(false)
-    private val _authenticationSate = MutableLiveData<AuthenticationState>()
+    private val _authenticationState = MutableLiveData<AuthenticationState>()
     private val _loginState = MutableLiveData<Event<LoginState>>()
 
     init {
-        _authenticationSate.value = if (authenticationTokenInterceptor.token == null) AuthenticationState.UNAUTHENTICATED else AuthenticationState.AUTHENTICATED
+        _authenticationState.value = if (authenticationTokenInterceptor.token == null) AuthenticationState.UNAUTHENTICATED else AuthenticationState.AUTHENTICATED
     }
 
     fun login(email: String?, password: String?) {
@@ -62,7 +62,7 @@ class LoginViewModel @Inject constructor(
             }
             if (response.isSuccessful && body != null) {
                 authenticationTokenInterceptor.token = body.token
-                _authenticationSate.value = AuthenticationState.AUTHENTICATED
+                _authenticationState.value = AuthenticationState.AUTHENTICATED
                 return@launch
             }
 
@@ -73,7 +73,7 @@ class LoginViewModel @Inject constructor(
 
             if (BuildConfig.DEBUG) {
                 authenticationTokenInterceptor.token = "debug"
-                _authenticationSate.value = AuthenticationState.AUTHENTICATED
+                _authenticationState.value = AuthenticationState.AUTHENTICATED
             } else {
                 _loginState.value = Event(LoginState.WRONG_CREDENTIALS)
             }
@@ -82,6 +82,6 @@ class LoginViewModel @Inject constructor(
 
     fun logout() {
         authenticationTokenInterceptor.token = null
-        _authenticationSate.value = AuthenticationState.UNAUTHENTICATED
+        _authenticationState.value = AuthenticationState.UNAUTHENTICATED
     }
 }

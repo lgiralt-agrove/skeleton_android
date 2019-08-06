@@ -36,7 +36,7 @@ class SplashFragment : BaseFragment() {
     }
 
     private fun subscribeUi(navController: NavController) {
-        loginViewModel.authenticationSate.observe(viewLifecycleOwner, Observer {
+        loginViewModel.authenticationState.observe(viewLifecycleOwner, Observer {
             when (it) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> navController.navigate(SplashFragmentDirections.actionSplashFragmentToMainFragment())
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(SplashFragmentDirections.actionSplashFragmentToLoginGraph())

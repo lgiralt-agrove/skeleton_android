@@ -14,7 +14,7 @@ data class ContestCaseMedia(
     @ColumnInfo(name = "title") val title: String? = null,
     @ColumnInfo(name = "description") val description: String? = null) {
     companion object {
-        const val TABLE_NAME = "constat_case_media"
+        const val TABLE_NAME = "contest_case_media"
     }
 }
 

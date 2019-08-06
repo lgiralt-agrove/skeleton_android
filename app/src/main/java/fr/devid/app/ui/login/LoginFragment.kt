@@ -59,7 +59,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun subscribeUi(binding: FragmentLoginBinding, navController: NavController) {
-        loginViewModel.authenticationSate.observe(viewLifecycleOwner, Observer {
+        loginViewModel.authenticationState.observe(viewLifecycleOwner, Observer {
             if (it == LoginViewModel.AuthenticationState.AUTHENTICATED) {
                 navController.popBackStack()
             }
