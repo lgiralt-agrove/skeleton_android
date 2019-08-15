@@ -2,12 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeGraph"
-        android:icon="@drawable/home_icon"
         android:menuCategory="secondary"
         android:title="@string/home"/>
     <item
         android:id="@+id/aboutGraph"
-        android:icon="@drawable/info_icon"
         android:menuCategory="secondary"
         android:title="@string/a_propos_de_no_contest"
         android:titleCondensed="@string/a_propos"/>

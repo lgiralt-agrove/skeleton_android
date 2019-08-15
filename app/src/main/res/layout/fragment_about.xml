@@ -10,20 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo_home"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/info_big_white"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,21 +31,19 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/telephone_no_contest"/>
 
-        <android.widget.Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/pro_btn"
             android:text="@string/logout"
             android:textAllCaps="false" />
 
-        <android.widget.Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/pro_btn"
             android:text="@string/partager_l_application"
             android:textAllCaps="false" />
 

@@ -19,25 +19,14 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/ib_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:background="@null"
-            android:src="@drawable/logout"
+            android:text="@string/logout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_pro"/>
-
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:src="@drawable/logo_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tv_pro"
@@ -46,41 +35,28 @@
             android:layout_marginEnd="14dp"
             android:gravity="end"
             android:text="@string/version_pro"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_logout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_logo" />
+            app:layout_constraintTop_toTopOf="@+id/ib_logout" />
 
-        <ImageButton
-            android:id="@+id/ib_pro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/pro_version_arrow"
-            visibleGone="!@{isPro}"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_pro"
-            app:layout_constraintEnd_toStartOf="@+id/tv_pro"
-            app:layout_constraintTop_toTopOf="@+id/tv_pro" />
-
-        <android.widget.Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_credits"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/user_code_btn"
             android:padding="2dp"
             android:text="@string/chargement_des_credits"
             android:textAllCaps="false"
             tools:text="Crédits disponibles : 300"
             app:layout_constraintEnd_toStartOf="@id/gl_middle"
-            app:layout_constraintTop_toBottomOf="@id/iv_logo"
+            app:layout_constraintTop_toBottomOf="@id/ib_logout"
             app:layout_constraintWidth_percent="0.45" />
 
-        <android.widget.Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_pro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:background="@drawable/connect_btn"
             android:padding="2dp"
             android:text="@string/passer_en_version_pro"
             android:textAllCaps="false"
@@ -115,82 +91,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_credits_hint" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/gl_middle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <android.widget.Button
-                android:id="@+id/bt_videos"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/video_btn"
-                android:gravity="bottom|center_horizontal"
-                android:paddingBottom="25dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/videos"
-                android:textAllCaps="false"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintEnd_toStartOf="@+id/gl_middle2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.40" />
-
-            <android.widget.Button
-                android:id="@+id/bt_photos"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/pic_btn"
-                android:gravity="bottom|center_horizontal"
-                android:paddingBottom="25dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/photos"
-                android:textAllCaps="false"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintStart_toStartOf="@+id/gl_middle2"
-                app:layout_constraintTop_toTopOf="@+id/bt_videos"
-                app:layout_constraintWidth_percent="0.40" />
-
-            <android.widget.Button
-                android:id="@+id/bt_archives"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/doc_btn"
-                android:gravity="bottom|center_horizontal"
-                android:paddingBottom="25dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/mes_archives"
-                android:textAllCaps="false"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintEnd_toStartOf="@+id/gl_middle2"
-                app:layout_constraintTop_toBottomOf="@+id/bt_videos"
-                app:layout_constraintWidth_percent="0.40" />
-
-            <android.widget.Button
-                android:id="@+id/bt_profile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/profile_btn"
-                android:gravity="bottom|center_horizontal"
-                android:paddingBottom="25dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/mon_compte"
-                android:textAllCaps="false"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintStart_toStartOf="@+id/gl_middle2"
-                app:layout_constraintTop_toTopOf="@+id/bt_archives"
-                app:layout_constraintWidth_percent="0.40" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
