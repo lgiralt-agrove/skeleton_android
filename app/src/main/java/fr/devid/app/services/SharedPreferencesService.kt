@@ -1,10 +1,12 @@
 package fr.devid.app.services
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import androidx.core.content.edit
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SharedPreferencesService @Inject constructor(context: Context) {
 
     companion object {
