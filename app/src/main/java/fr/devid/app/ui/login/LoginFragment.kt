@@ -15,6 +15,7 @@ import fr.devid.app.R
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.base.onBackPressedCallBackNavControllerOrParent
 import fr.devid.app.databinding.FragmentLoginBinding
+import fr.devid.app.viewmodels.EventObserver
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {
@@ -67,8 +68,8 @@ class LoginFragment : BaseFragment() {
         loginViewModel.isLoading.observe(viewLifecycleOwner, Observer {
             binding.isLoading = it
         })
-        loginViewModel.loginState.observe(viewLifecycleOwner, Observer {
-            val errorResource = when (it.getContentIfNotHandled() ?: return@Observer) {
+        loginViewModel.loginState.observe(viewLifecycleOwner, EventObserver {
+            val errorResource = when (it) {
                 LoginViewModel.LoginState.FILL_FIELDS -> R.string.fill_all_fields
                 LoginViewModel.LoginState.NO_INTERNET -> R.string.check_internet
                 LoginViewModel.LoginState.NOT_ACTIVATED -> R.string.not_activated
