@@ -14,7 +14,7 @@
 
         <androidx.core.widget.ContentLoadingProgressBar
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            visibleGone="@{isLoading}"
+            isGone="@{!isLoading}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="true"

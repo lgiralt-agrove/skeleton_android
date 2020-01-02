@@ -7,9 +7,9 @@ import androidx.databinding.BindingAdapter
 
 object BindingAdapters {
     @JvmStatic
-    @BindingAdapter("visibleGone")
-    fun showHide(view: View, show: Boolean) {
-        view.visibility = if (show) View.VISIBLE else View.GONE
+    @BindingAdapter("isGone")
+    fun bindIsGone(view: View, isGone: Boolean) {
+        view.visibility = if (isGone) View.GONE else View.VISIBLE
     }
 
     @JvmStatic
