@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import fr.devid.app.api.AppService
 import fr.devid.app.api.ProfileDto
-import fr.devid.app.services.AppServiceWrapper
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
-    private val appService: AppServiceWrapper
+    private val appService: AppService
 ) : ViewModel() {
 
     val profile: LiveData<ProfileDto>

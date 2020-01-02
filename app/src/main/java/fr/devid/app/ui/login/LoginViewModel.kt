@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.devid.app.BuildConfig
+import fr.devid.app.api.AppService
 import fr.devid.app.api.LoginDto
 import fr.devid.app.services.AppServiceWrapper
 import fr.devid.app.services.AuthenticationTokenInterceptor
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val authenticationTokenInterceptor: AuthenticationTokenInterceptor,
-    private val appService: AppServiceWrapper
+    private val appService: AppService
 ) : ViewModel() {
 
     enum class AuthenticationState {

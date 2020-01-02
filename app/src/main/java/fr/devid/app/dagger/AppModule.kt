@@ -12,6 +12,7 @@ import fr.devid.app.Constants
 import fr.devid.app.api.AppService
 import fr.devid.app.moshi.ThreeTenAdapters
 import fr.devid.app.room.AppDatabase
+import fr.devid.app.services.AppServiceWrapper
 import fr.devid.app.services.AuthenticationTokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,18 +39,22 @@ object AppModule {
     @Singleton
     @Provides
     @JvmStatic
-    fun provideAppService(okHttpClient: OkHttpClient): AppService = Retrofit.Builder().apply {
-        baseUrl(Constants.BASE_URL)
-        addConverterFactory(
-            MoshiConverterFactory.create(
-                Moshi.Builder().apply {
-                    add(KotlinJsonAdapterFactory())
-                    add(ThreeTenAdapters())
-                }.build()
-            )
-        )
-        client(okHttpClient)
-    }.build().create(AppService::class.java)
+    fun provideMoshi(): Moshi = Moshi.Builder().apply {
+        add(KotlinJsonAdapterFactory())
+        add(ThreeTenAdapters())
+    }.build()
+
+    @Singleton
+    @Provides
+    @JvmStatic
+    fun provideAppService(okHttpClient: OkHttpClient, moshi: Moshi): AppService {
+        val appService = Retrofit.Builder().apply {
+            baseUrl(Constants.BASE_URL)
+            addConverterFactory(MoshiConverterFactory.create(moshi))
+            client(okHttpClient)
+        }.build().create(AppService::class.java)
+        return AppServiceWrapper(appService)
+    }
 
 
     @Provides

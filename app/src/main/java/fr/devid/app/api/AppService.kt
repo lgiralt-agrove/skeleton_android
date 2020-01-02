@@ -7,13 +7,13 @@ import retrofit2.http.*
 interface AppService {
 
     @POST("login")
-    suspend fun login(@Body loginDto: LoginDto): Response<LoginResponseDto>
+    suspend fun login(@Body loginDto: LoginDto): Response<LoginResponseDto>?
 
     @POST("register")
-    suspend fun register(@Body registerDto: RegisterDto): Response<TokenDto>
+    suspend fun register(@Body registerDto: RegisterDto): Response<TokenDto>?
 
     @GET("profile")
     @Headers(AuthenticationTokenInterceptor.AUTHORIZATION_HEADER)
-    suspend fun getProfile(): ProfileDto
+    suspend fun getProfile(): ProfileDto?
 
 }
