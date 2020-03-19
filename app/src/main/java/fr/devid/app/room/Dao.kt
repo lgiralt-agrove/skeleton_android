@@ -23,5 +23,4 @@ interface ConstatCaseMediaDao {
 
     @Query("DELETE FROM ${ContestCaseMedia.TABLE_NAME}")
     fun deleteAll()
-
 }

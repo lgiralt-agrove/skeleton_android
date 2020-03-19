@@ -12,9 +12,9 @@ data class ContestCaseMedia(
     @ColumnInfo(name = "longitude") val longitude: Double,
     @ColumnInfo(name = "started_at") val startedAtEpochSecond: Long,
     @ColumnInfo(name = "title") val title: String? = null,
-    @ColumnInfo(name = "description") val description: String? = null) {
+    @ColumnInfo(name = "description") val description: String? = null
+) {
     companion object {
         const val TABLE_NAME = "contest_case_media"
     }
 }
-

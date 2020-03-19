@@ -7,14 +7,12 @@ import dagger.android.support.AndroidSupportInjectionModule
 import fr.devid.app.App
 import javax.inject.Singleton
 
-
 @Singleton
 @Component(modules = [AndroidSupportInjectionModule::class, AppModule::class, MainActivityModule::class])
-interface AppComponent: AndroidInjector<App> {
+interface AppComponent : AndroidInjector<App> {
 
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance applicationContext: App): AppComponent
     }
-
 }

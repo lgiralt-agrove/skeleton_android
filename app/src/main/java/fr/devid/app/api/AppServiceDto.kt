@@ -4,8 +4,14 @@ data class LoginDto(val email: String, val password: String)
 
 data class LoginResponseDto(val token: String?)
 
-data class RegisterDto(val email: String, val password: String, val phone: String,
-                       val legalTerms: Boolean, val company: String? = null, val identificationCode: String? = null)
+data class RegisterDto(
+    val email: String,
+    val password: String,
+    val phone: String,
+    val legalTerms: Boolean,
+    val company: String? = null,
+    val identificationCode: String? = null
+)
 
 data class TokenDto(val token: String?)
 

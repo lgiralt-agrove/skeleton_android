@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.databinding.FragmentAboutBinding
 import fr.devid.app.ui.login.LoginViewModel

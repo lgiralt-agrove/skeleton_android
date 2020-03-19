@@ -15,5 +15,4 @@ interface AppService {
     @GET("profile")
     @Headers(AuthenticationTokenInterceptor.AUTHORIZATION_HEADER)
     suspend fun getProfile(): ProfileDto?
-
 }

@@ -29,5 +29,4 @@ interface FragmentBuildersModule {
 
     @ContributesAndroidInjector
     fun contributeAboutFragment(): AboutFragment
-
 }

@@ -1,8 +1,8 @@
 package fr.devid.app.services
 
 import android.content.Context
-import androidx.preference.PreferenceManager
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,5 +18,4 @@ class SharedPreferencesService @Inject constructor(context: Context) {
     internal var token: String?
         get() = prefs.getString(AUTH_TOKEN, null)
         set(value) = prefs.edit { putString(AUTH_TOKEN, value) }
-
 }

@@ -14,12 +14,11 @@ import fr.devid.app.moshi.ThreeTenAdapters
 import fr.devid.app.room.AppDatabase
 import fr.devid.app.services.AppServiceWrapper
 import fr.devid.app.services.AuthenticationTokenInterceptor
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
-
 
 @Module(includes = [ViewModelModule::class])
 object AppModule {
@@ -56,16 +55,13 @@ object AppModule {
         return AppServiceWrapper(appService)
     }
 
-
     @Provides
     @JvmStatic
-    fun provideContext(app: App): Context
-        = app
+    fun provideContext(app: App): Context = app
 
     @Singleton
     @Provides
     @JvmStatic
-    fun provideAppDatabase(applicationContext: Context): AppDatabase
-        = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app-db").build()
-
+    fun provideAppDatabase(applicationContext: Context): AppDatabase =
+        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app-db").build()
 }

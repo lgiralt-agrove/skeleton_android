@@ -1,4 +1,14 @@
-[*.{kt,kts}]
-# KTlint configuration file
+root = true
 
-disabled_rules=no-wildcard-imports,import-ordering
+[*]
+indent_style = space
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{java,kt,kts,kt.spec,kts.spec}]
+indent_size=4
+max_ligne_length=off
+disabled_rules=no-wildcard-imports
+# Doc: https://youtrack.jetbrains.com/issue/IDEA-170643#focus=streamItem-27-3708697.0-0
+ij_java_imports_layout = java.**,|,javax.**,|,org.**,|,com.**,|,com.diffplug.**,|,*
+ij_java_use_single_class_imports = true

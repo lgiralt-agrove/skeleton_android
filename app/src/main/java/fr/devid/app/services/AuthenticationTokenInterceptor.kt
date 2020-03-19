@@ -1,14 +1,14 @@
 package fr.devid.app.services
 
-import okhttp3.Interceptor
-import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
+import okhttp3.Interceptor
+import okhttp3.Response
 
 @Singleton
 class AuthenticationTokenInterceptor @Inject constructor(
     private val sharedPreferencesService: SharedPreferencesService
-): Interceptor {
+) : Interceptor {
 
     companion object {
         private const val AUTHORIZATION_HEADER_NAME = "Authorization"

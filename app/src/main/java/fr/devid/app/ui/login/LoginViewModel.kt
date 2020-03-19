@@ -7,12 +7,11 @@ import androidx.lifecycle.viewModelScope
 import fr.devid.app.BuildConfig
 import fr.devid.app.api.AppService
 import fr.devid.app.api.LoginDto
-import fr.devid.app.services.AppServiceWrapper
 import fr.devid.app.services.AuthenticationTokenInterceptor
 import fr.devid.app.viewmodels.Event
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val authenticationTokenInterceptor: AuthenticationTokenInterceptor,

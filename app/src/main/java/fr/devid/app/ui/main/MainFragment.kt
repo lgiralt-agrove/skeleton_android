@@ -15,8 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import fr.devid.app.R
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.ui.login.LoginViewModel
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 class MainFragment : BaseFragment() {
 

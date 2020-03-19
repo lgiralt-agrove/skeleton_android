@@ -9,9 +9,9 @@ import fr.devid.app.api.AppService
 import fr.devid.app.api.RegisterDto
 import fr.devid.app.services.AuthenticationTokenInterceptor
 import fr.devid.app.viewmodels.Event
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(
     private val authenticationTokenInterceptor: AuthenticationTokenInterceptor,

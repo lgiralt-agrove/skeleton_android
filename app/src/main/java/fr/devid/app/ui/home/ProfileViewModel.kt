@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.devid.app.api.AppService
 import fr.devid.app.api.ProfileDto
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
     private val appService: AppService

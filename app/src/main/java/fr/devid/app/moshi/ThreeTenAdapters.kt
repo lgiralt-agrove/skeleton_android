@@ -12,5 +12,4 @@ class ThreeTenAdapters {
 
     @ToJson
     fun instantToJson(value: Instant): String = value.toString()
-
 }
