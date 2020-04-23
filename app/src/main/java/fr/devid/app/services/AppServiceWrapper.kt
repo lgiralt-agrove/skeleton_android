@@ -1,15 +1,12 @@
 package fr.devid.app.services
 
 import fr.devid.app.api.*
-import javax.inject.Inject
-import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import timber.log.Timber
 
-@Singleton
-class AppServiceWrapper @Inject constructor(private val appService: AppService) : AppService {
+class AppServiceWrapper(private val appService: AppService) : AppService {
 
     override suspend fun login(loginDto: LoginDto): Response<LoginResponseDto>? =
         ioContextExecutor { appService.login(loginDto) }
