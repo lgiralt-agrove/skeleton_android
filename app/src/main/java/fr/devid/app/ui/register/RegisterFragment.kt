@@ -5,21 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import fr.devid.app.api.RegisterDto
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.databinding.FragmentRegisterBinding
-import javax.inject.Inject
 
 class RegisterFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val registerViewModel: RegisterViewModel by viewModels { viewModelFactory }
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     private val args: RegisterFragmentArgs by navArgs()
 
@@ -51,7 +45,7 @@ class RegisterFragment : BaseFragment() {
     }
 
     private fun subscribeUi(binding: FragmentRegisterBinding) {
-        registerViewModel.state.observe(viewLifecycleOwner, Observer { state ->
+        registerViewModel.state.observe(viewLifecycleOwner, { state ->
             binding.isLoading = state == RegisterViewModel.RegisterViewModelState.LOADING
             if (state == RegisterViewModel.RegisterViewModelState.SUCCESS) {
                 findNavController().popBackStack()

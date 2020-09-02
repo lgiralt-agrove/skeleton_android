@@ -1,10 +1,11 @@
 package fr.devid.app
 
-import dagger.android.DaggerApplication
-import fr.devid.app.dagger.DaggerAppComponent
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
-class App : DaggerApplication() {
+@HiltAndroidApp
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -12,6 +13,4 @@ class App : DaggerApplication() {
             Timber.plant(Timber.DebugTree())
         }
     }
-
-    override fun applicationInjector() = DaggerAppComponent.factory().create(this)
 }

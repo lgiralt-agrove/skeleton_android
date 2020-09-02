@@ -1,5 +1,6 @@
 package fr.devid.app.ui.login
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,11 +10,10 @@ import fr.devid.app.api.AppService
 import fr.devid.app.api.LoginDto
 import fr.devid.app.services.AuthenticationTokenInterceptor
 import fr.devid.app.viewmodels.Event
-import javax.inject.Inject
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class LoginViewModel @Inject constructor(
+class LoginViewModel @ViewModelInject constructor(
     private val authenticationTokenInterceptor: AuthenticationTokenInterceptor,
     private val appService: AppService
 ) : ViewModel() {

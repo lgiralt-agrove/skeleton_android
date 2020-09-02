@@ -4,9 +4,10 @@ import android.content.pm.ActivityInfo
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseFragment : DaggerFragment() {
+@AndroidEntryPoint
+abstract class BaseFragment : Fragment() {
 
     open val orientation: Int
         get() = ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT

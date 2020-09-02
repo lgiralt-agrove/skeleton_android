@@ -1,16 +1,16 @@
 package fr.devid.app.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.devid.app.api.AppService
 import fr.devid.app.api.ProfileDto
-import javax.inject.Inject
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class ProfileViewModel @Inject constructor(
+class ProfileViewModel @ViewModelInject constructor(
     private val appService: AppService
 ) : ViewModel() {
 

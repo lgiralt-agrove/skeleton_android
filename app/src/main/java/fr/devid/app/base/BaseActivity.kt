@@ -1,5 +1,7 @@
 package fr.devid.app.base
 
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseActivity : DaggerAppCompatActivity()
+@AndroidEntryPoint
+abstract class BaseActivity : AppCompatActivity()

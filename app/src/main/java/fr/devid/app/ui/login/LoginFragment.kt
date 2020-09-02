@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import fr.devid.app.BuildConfig
@@ -16,14 +14,10 @@ import fr.devid.app.base.BaseFragment
 import fr.devid.app.base.onBackPressedCallBackNavControllerOrParent
 import fr.devid.app.databinding.FragmentLoginBinding
 import fr.devid.app.viewmodels.EventObserver
-import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val loginViewModel: LoginViewModel by activityViewModels { viewModelFactory }
+    private val loginViewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,12 +54,12 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun subscribeUi(binding: FragmentLoginBinding, navController: NavController) {
-        loginViewModel.authenticationState.observe(viewLifecycleOwner, Observer {
+        loginViewModel.authenticationState.observe(viewLifecycleOwner, {
             if (it == LoginViewModel.AuthenticationState.AUTHENTICATED) {
                 navController.popBackStack()
             }
         })
-        loginViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+        loginViewModel.isLoading.observe(viewLifecycleOwner, {
             binding.isLoading = it
         })
         loginViewModel.loginState.observe(viewLifecycleOwner, EventObserver {

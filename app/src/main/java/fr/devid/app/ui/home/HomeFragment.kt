@@ -6,23 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navGraphViewModels
 import fr.devid.app.R
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.databinding.FragmentHomeBinding
 import fr.devid.app.ui.login.LoginViewModel
-import javax.inject.Inject
 import timber.log.Timber
 
 class HomeFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val loginViewModel: LoginViewModel by activityViewModels { viewModelFactory }
-    private val profileViewModel: ProfileViewModel by navGraphViewModels(R.id.tab_nav_graph) { viewModelFactory }
+    private val loginViewModel: LoginViewModel by activityViewModels()
+    private val profileViewModel: ProfileViewModel by navGraphViewModels(R.id.tab_nav_graph) {
+        defaultViewModelProviderFactory
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +41,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun subscribeUi(binding: FragmentHomeBinding) {
-        profileViewModel.profile.observe(viewLifecycleOwner, Observer {
+        profileViewModel.profile.observe(viewLifecycleOwner, {
             Timber.d("Profile received: $it")
             binding.isPro = it.isPro
         })

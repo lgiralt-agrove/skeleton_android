@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -15,15 +13,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import fr.devid.app.R
 import fr.devid.app.base.BaseFragment
 import fr.devid.app.ui.login.LoginViewModel
-import javax.inject.Inject
 import timber.log.Timber
 
 class MainFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val loginViewModel: LoginViewModel by activityViewModels { viewModelFactory }
+    private val loginViewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +38,12 @@ class MainFragment : BaseFragment() {
     }
 
     private fun subscribeUi(navController: NavController) {
-        loginViewModel.authenticationState.observe(viewLifecycleOwner, Observer {
+        loginViewModel.authenticationState.observe(viewLifecycleOwner, {
             when (it) {
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.popBackStack()
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> Timber.d("User is authenticated")
+                else -> {
+                } // Nothing to do
             }
         })
     }

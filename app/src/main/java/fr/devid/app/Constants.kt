@@ -1,6 +1,4 @@
 package fr.devid.app
 
-object Constants {
-
-    const val BASE_URL = BuildConfig.BASE_URL
-}
+// Add any constant here
+// const val MY_CONSTANT = 42

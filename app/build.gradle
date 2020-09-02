@@ -8,6 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     signingConfigs {
         config {
@@ -67,6 +69,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$rootProject.hiltLifecycleViewModelVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
@@ -77,8 +80,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    implementation "com.google.dagger:hilt-android:$rootProject.daggerVersion"
     implementation "com.karumi:dexter:$rootProject.dexterVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
@@ -88,8 +90,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$rootProject.retrofitVersion"
 
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.daggerVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
 
     testImplementation "junit:junit:$rootProject.junitVersion"
@@ -101,4 +102,8 @@ dependencies {
     // Allow to debug memory leak
 //     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
+}
+
+kapt {
+    correctErrorTypes true
 }
