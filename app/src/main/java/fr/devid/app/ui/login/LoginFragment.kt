@@ -41,7 +41,7 @@ class LoginFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallBackNavControllerOrParent())
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallBackNavControllerOrParent())
     }
 
     private fun bindUi(binding: FragmentLoginBinding, navController: NavController) {

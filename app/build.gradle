@@ -18,8 +18,8 @@ android {
         }
     }
     compileSdkVersion rootProject.compileSdkVersion
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
     defaultConfig {
         applicationId 'fr.devid.app'
@@ -29,18 +29,27 @@ android {
         versionName '1.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
-    buildTypes {
-        debug {
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            dimension "environment"
             buildConfigField('String', 'BASE_URL', '\"https://dev.dev-id.fr\"')
         }
-        release {
+        prod {
+            dimension "environment"
             buildConfigField('String', 'BASE_URL', '\"https://prod.dev-id.fr\"')
+        }
+    }
+    buildTypes {
+        release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
     }
     compileOptions {
+        // Allow to use java 8+ features for any API level (also uncomment the line in dependencies)
+//        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -71,7 +80,6 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
     implementation "com.karumi:dexter:$rootProject.dexterVersion"
-    implementation "com.jakewharton.threetenabp:threetenabp:$rootProject.threeTenVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingInterceptorVersion"
@@ -87,5 +95,10 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
 
-    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    // Allow to use java 8+ features for any API level
+//    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+
+    // Allow to debug memory leak
+//     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
 }

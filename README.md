@@ -1,17 +1,17 @@
 
-# SKELETON PROJECT  
+# SKELETON PROJECT
 
 ## How to use
 Clone this repo, then run the following commands:
 ```
-rm -rf .git
+rm -rf .git README.md
 git init
 ```
-You will need to refactor the code to use the correct package name for your project. 
-  
-## Dagger  
-This project has already dagger setup. It uses dagger-android.   
-When adding a **new fragment** you should extend BaseFragment and declare it in the FragmentBuildersModule class.  
+You will need to refactor the code to use the correct package name for your project.
+
+## Dagger
+This project has already dagger setup. It uses dagger-android.
+When adding a **new fragment** you should extend BaseFragment and declare it in the FragmentBuildersModule class.
 When adding a **new viewModel** you need to also declare it in the ViewModelModule class.
 
 ## Navigation
@@ -25,9 +25,9 @@ The navigation inside a tab should be isolated in its own nested graph for clari
 Pressing the back button will always be consumed by the top NavController. If you wish to be able to back inside a subflow, you can register the custom callback available in BaseFragment.
 
 ```
-override fun onActivityCreated(savedInstanceState: Bundle?) {  
-    super.onActivityCreated(savedInstanceState)  
-    requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallBackNavControllerOrParent())  
+override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallBackNavControllerOrParent())
 }
 ```
 
@@ -44,9 +44,9 @@ If you scope a ViewModel to a nested flow, it will be cleared when the user exis
 ## Glide
 Glide is ready to be used, so you should use it if you need to download an image:
 ```
-Glide.with(itemView)  
-    .load(generateVideoThumbnail(contestCaseMedia.documentFilePath))  
-    .centerCrop()  
+Glide.with(itemView)
+    .load(generateVideoThumbnail(contestCaseMedia.documentFilePath))
+    .centerCrop()
     .into(binding.ivPreview)
 ```
 
@@ -59,41 +59,43 @@ Timber is used to do the logging of the app. **Never use Log.x**, you can simply
 ## Dexter
 The Dexter library is available if you need to ask some runtime permission:
 ```
-Dexter.withActivity(requireActivity())  
-    .withPermissions(  
-        Manifest.permission.CAMERA,  
-  Manifest.permission.RECORD_AUDIO,  
-  Manifest.permission.ACCESS_FINE_LOCATION  
-  ).withListener(object: MultiplePermissionsListener {  
-        @SuppressLint("MissingPermission")  
-        override fun onPermissionsChecked(report: MultiplePermissionsReport) {  
-            if (report.areAllPermissionsGranted()) {  
-                Timber.d("Permission was granted")  
-            } else {  
-                Toast.makeText(requireContext(), R.string.permission_location_not_granted, Toast.LENGTH_LONG).show()  
-            }  
-        }  
-  
-        override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {  
-            AlertDialog.Builder(requireContext())  
-                .setTitle(R.string.permission_dialog_title)  
-                .setMessage(R.string.permission_start_recording_message)  
-                .setPositiveButton(R.string.ok) { _, _ ->  
-  token.continuePermissionRequest()  
-                }.setNegativeButton(R.string.cancel) { _, _ ->  
-  token.cancelPermissionRequest()  
-                }.show()  
-        }  
+Dexter.withActivity(requireActivity())
+    .withPermissions(
+        Manifest.permission.CAMERA,
+  Manifest.permission.RECORD_AUDIO,
+  Manifest.permission.ACCESS_FINE_LOCATION
+  ).withListener(object: MultiplePermissionsListener {
+        @SuppressLint("MissingPermission")
+        override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+            if (report.areAllPermissionsGranted()) {
+                Timber.d("Permission was granted")
+            } else {
+                Toast.makeText(requireContext(), R.string.permission_location_not_granted, Toast.LENGTH_LONG).show()
+            }
+        }
+
+        override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>, token: PermissionToken) {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.permission_dialog_title)
+                .setMessage(R.string.permission_start_recording_message)
+                .setPositiveButton(R.string.ok) { _, _ ->
+  token.continuePermissionRequest()
+                }.setNegativeButton(R.string.cancel) { _, _ ->
+  token.cancelPermissionRequest()
+                }.show()
+        }
     }).check()
 ```
 
-## ThreeTen
-ThreeTen is a backport of the JSR310 java.time to any android version. When dealing with date **you should always avoid Date, Calendar** and instead use **Instant, DateTime, LocalDateTime, etc.**
-Of course, be sure to pick the class from the package **org.threeten.bp**. They are the same as the one found under java.time but do not require API 26.
+## Java8+/ThreeTen
+It is now possible to compile Java 8+ code in any android version.
+Thus it is no longer needed to import the ThreeTenAndroidBackPort. You can safely use the object from the java.time package.
+You can even use java streams in any API level.
+To enable this feature uncomment the *2* desugaring lines in build.gradle
 
 ## LeakCanary
 When developing, if you are unsure about memory leak, you can add this dependency to the project:
-`debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'`
+`debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'`
 
 ## PlayStore Publish
-The project is already setup to ease app publication. You just need to generate a jks and put it under **app/keystore/**. Then fill the correct values in **singingConfigs** of the app/build.gradle. Then thanks to the **Build Variants** you will be able to generate a signed APK with production URL.
+The project is already setup to ease app publication. You just need to generate a jks and put it under **app/keystore/**. Then fill the correct values in **singingConfigs** of the app/build.gradle. Then thanks to the **Build Variants** you will be able to generate a signed APK when selecting any Release build.

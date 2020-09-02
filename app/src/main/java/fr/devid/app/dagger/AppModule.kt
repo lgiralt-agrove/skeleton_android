@@ -10,7 +10,6 @@ import fr.devid.app.App
 import fr.devid.app.BuildConfig
 import fr.devid.app.Constants
 import fr.devid.app.api.AppService
-import fr.devid.app.moshi.ThreeTenAdapters
 import fr.devid.app.room.AppDatabase
 import fr.devid.app.services.AppServiceWrapper
 import fr.devid.app.services.AuthenticationTokenInterceptor
@@ -40,7 +39,6 @@ object AppModule {
     @JvmStatic
     fun provideMoshi(): Moshi = Moshi.Builder().apply {
         add(KotlinJsonAdapterFactory())
-        add(ThreeTenAdapters())
     }.build()
 
     @Singleton

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -36,7 +35,7 @@ class SplashFragment : BaseFragment() {
     }
 
     private fun subscribeUi(navController: NavController) {
-        loginViewModel.authenticationState.observe(viewLifecycleOwner, Observer {
+        loginViewModel.authenticationState.observe(viewLifecycleOwner, {
             when (it) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> navController.navigate(SplashFragmentDirections.actionSplashFragmentToMainFragment())
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(SplashFragmentDirections.actionSplashFragmentToLoginGraph())
