@@ -7,8 +7,8 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
-import fr.devid.app.App
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import fr.devid.app.BuildConfig
 import fr.devid.app.BuildConfig.BASE_URL
 import fr.devid.app.api.AppService
@@ -22,7 +22,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Singleton
@@ -53,11 +53,8 @@ object AppModule {
         return AppServiceWrapper(appService)
     }
 
-    @Provides
-    fun provideContext(app: App): Context = app
-
     @Singleton
     @Provides
-    fun provideAppDatabase(applicationContext: Context): AppDatabase =
+    fun provideAppDatabase(@ApplicationContext applicationContext: Context): AppDatabase =
         Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app-db").build()
 }
